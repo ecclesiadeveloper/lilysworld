@@ -1,0 +1,16 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {
+                "title": "lily's world",
+                "subtitle": "a brave new world",
+                "button_text": "Shop All",
+                "button_link": "shopify:\/\/collections\/all"
+            }
+        }
+    },
+    "order": [
+        "hero"
+    ]
+}

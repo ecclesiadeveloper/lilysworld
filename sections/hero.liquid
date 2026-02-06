@@ -1,0 +1,53 @@
+<div class="relative flex min-h-[70vh] w-full flex-col items-center justify-center text-center" style="min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--color-bg);">
+  <div class="mx-auto max-w-2xl px-4">
+    <h1 class="mb-6 text-4xl font-light tracking-tight sm:text-6xl" style="font-family: 'Ahsing', serif; font-size: 3.75rem; margin-bottom: 1.5rem; color: var(--color-text);">
+      {{ section.settings.title | default: "lily's world" }}
+    </h1>
+    <p class="mb-10 text-lg text-neutral-600" style="font-size: 1.125rem; margin-bottom: 2.5rem; color: #525252;">
+      {{ section.settings.subtitle | default: "a brave new world" }}
+    </p>
+    <a
+      href="{{ section.settings.button_link | default: '/collections/all' }}"
+      class="inline-flex h-12 items-center justify-center rounded-full bg-black px-8 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+      style="display: inline-flex; height: 3rem; align-items: center; justify-content: center; border-radius: 9999px; background-color: black; padding-left: 2rem; padding-right: 2rem; font-size: 0.875rem; font-weight: 500; color: white; transition: background-color 0.2s;"
+    >
+      {{ section.settings.button_text | default: "Shop All" }}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "lily's world"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "a brave new world"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop All"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
