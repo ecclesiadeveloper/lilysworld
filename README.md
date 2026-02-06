@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lily's world - Headless Shopify Storefront
+
+A specific, minimalist, high-converting headless storefront built with Next.js (App Router), TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS (Floral/Retro Theme)
+- **Typography**: Custom Font "Ahsing" (Headers) + Inter (Body)
+- **Integration**: Shopify Storefront API (GraphQL)
+- **State**: Global Cart Context (LocalStorage persistence)
+- **Zero External UI Libraries**: Pure Tailwind + React
 
 ## Getting Started
 
-First, run the development server:
+### 1. Prerequisites
+
+- Node.js 18+
+- A Shopify Store
+- Shopify Storefront Access Token
+
+### 2. Setup
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/lilys-world.git
+    cd lilys-world
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  Configure Environment Variables:
+    Copy `.env.example` to `.env.local`:
+    ```bash
+    cp .env.example .env.local
+    ```
+    Update `.env.local` with your Shopify credentials:
+    ```env
+    NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+    NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-access-token
+    NEXT_PUBLIC_SHOPIFY_API_VERSION=2024-01
+    ```
+
+### 3. Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the store.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Shopify Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To generate the required credentials:
+1.  Go to your Shopify Admin -> **Settings** -> **Apps and sales channels**.
+2.  Click **Develop apps** -> **Create an app**.
+3.  Name it "Headless Storefront".
+4.  Go to **Configuration** -> **Storefront API integration**.
+5.  Select the following scopes:
+    - `unauthenticated_read_product_listings`
+    - `unauthenticated_read_product_tags`
+    - `unauthenticated_read_products`
+    - `unauthenticated_read_collection_listings`
+    - `unauthenticated_write_checkouts` (if available, otherwise Cart API handles this)
+    - `unauthenticated_read_checkouts`
+6.  Click **Save** -> **Install app**.
+7.  Copy the **Storefront API access token** into your `.env.local`.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy easily to Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  Push your code to GitHub.
+2.  Import the project in Vercel.
+3.  Add the Environment Variables in Vercel Project Settings.
+4.  Deploy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Troubleshooting
 
-## Deploy on Vercel
+- **Products not showing?**
+    - Ensure your products are "Active" and available to the "Headless Storefront" channel (or whichever app you created).
+    - Check your API Token scopes.
+- **Images missing?**
+    - Next.js requires `images.remotePatterns` in `next.config.js` if you are pulling from external domains other than `cdn.shopify.com`. This project defaults to standard Shopify CDN (configured automatically by some setups, but you may need to add it if using a custom domain).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
